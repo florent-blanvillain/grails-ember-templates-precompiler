@@ -13,15 +13,18 @@ class Precompiler {
     Precompiler(Map options = [:]) {
         ClassLoader classLoader = getClass().classLoader
         URL handlebars = classLoader.getResource('handlebars-1.0.0.beta.6.js')
-
+        URL headlessEmberjs = classLoader.getResource('headless-ember.js')  // file found into emberjs github project, it brings some fake objects (like windows), so rhino can
+        // swallow emberjs
+        URL emberjs = classLoader.getResource('ember-1.0.pre.js')
         Context cx = Context.enter()
         cx.optimizationLevel = 9
         Global global = new Global()
         global.init cx
         scope = cx.initStandardObjects(global)
         cx.evaluateString scope, handlebars.text, handlebars.file, 1, null
-
-        precompile = scope.get("Handlebars", scope).get("precompile", scope)
+        cx.evaluateString scope, headlessEmberjs.text, headlessEmberjs.file, 1, null
+        cx.evaluateString scope, emberjs.text, emberjs.file, 1, null
+        precompile = scope.get("precompileEmberHandlebars", scope) // function from headless ember, thanks guys.. (it doesn't work when accessing from Ember.Handlebars.precompile)
         Context.exit();
     }
 
@@ -30,8 +33,7 @@ class Precompiler {
 
         String output = """
 (function(){
-    var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
-    templates['$templateName'] = template($compiledTemplate);
+    Ember.TEMPLATES['$templateName'] = Ember.Handlebars.template($compiledTemplate);
 }());
 """
         target.write output

@@ -16,14 +16,19 @@ class PrecompilerTests {
     }
 
     @Test
+    void "precompiling does not result in a rhino object"() {
+        String compiledTemplate = precompiler.precompileTemplate('<div>Simple</div>')
+        assert !compiledTemplate.contains("org.mozilla.javascript")
+    }
+
+    @Test
     void precompileTemplate() {
         String expected = """
-function (Handlebars,depth0,helpers,partials,data) {
-  helpers = helpers || Handlebars.helpers;
-  var foundHelper, self=this;
-
-
-  return "<div>Simple</div>";}
+function anonymous(Handlebars, depth0, helpers, partials, data) {
+    helpers = helpers || Ember.Handlebars.helpers;
+    var foundHelper, self = this;
+    data.buffer.push("<div>Simple</div>");
+}
         """
 
         String compiledTemplate = precompiler.precompileTemplate('<div>Simple</div>')
@@ -40,7 +45,7 @@ function (Handlebars,depth0,helpers,partials,data) {
 
             precompiler.precompile(input, target, 'input')
 
-            assert expected.text == target.text
+            assert expected.text.trim() == target.text.trim()
         }
     }
 

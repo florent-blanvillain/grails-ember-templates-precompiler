@@ -15,20 +15,17 @@ grails.project.dependency.resolution = {
         grailsCentral()
         // uncomment the below to enable remote dependency resolution
         // from public Maven repositories
-        //mavenCentral()
-        //mavenLocal()
-        //mavenRepo "http://snapshots.repository.codehaus.org"
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
-    }
-    dependencies {
-        runtime 'rhino:js:1.7R2'
+        mavenCentral()
+        mavenLocal()
+        mavenRepo "http://snapshots.repository.codehaus.org"
+        mavenRepo "http://repository.codehaus.org"
+        mavenRepo "http://download.java.net/maven/2/"
+        mavenRepo "http://repository.jboss.com/maven2/"
     }
 
     plugins {
         build(":tomcat:$grailsVersion",
-              ":release:2.0.3") {
+              ":release:2.0.4") {
             export = false
         }
         runtime ":resources:1.2-RC1"
