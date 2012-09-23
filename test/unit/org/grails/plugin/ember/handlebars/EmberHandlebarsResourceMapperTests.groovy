@@ -7,13 +7,13 @@ import org.junit.Before
 import org.grails.plugin.resource.ResourceMeta
 
 @TestMixin(GrailsUnitTestMixin)
-class HandlebarsResourceMapperTests {
+class EmberHandlebarsResourceMapperTests {
 
-    HandlebarsResourceMapper mapper
+    EmberHandlebarsResourceMapper mapper
 
     @Before
     void setUp() {
-        mapper = new HandlebarsResourceMapper()
+        mapper = new EmberHandlebarsResourceMapper()
     }
 
     @Test

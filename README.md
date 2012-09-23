@@ -1,8 +1,7 @@
 # Handlebars.js Resources plug-in for Grails
 
-This plug-in supports using Handlebars.js templates with the Grails Resources Plugin. This plugin includes a resource mapper that will precompile
-the template files into JavaScript and make it available for other resource processing, including minification and bundling.
-It's a simple fork from Matt Sheehan grails-handlebars-resources plugin.
+This plug-in is for precompiling emberjs's handlebars templates on the server side. It integrates with grails resources plugin to allow subsequent minification gzip and more.
+It's a simple fork from Matt Sheehan grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
 
 ## Installation
 

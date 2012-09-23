@@ -10,7 +10,7 @@ import org.grails.plugin.resource.ResourceMeta
  *
  * Precompile .handlebars template files into .js files.
  */
-class HandlebarsResourceMapper implements GrailsApplicationAware {
+class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
     GrailsApplication grailsApplication
 
