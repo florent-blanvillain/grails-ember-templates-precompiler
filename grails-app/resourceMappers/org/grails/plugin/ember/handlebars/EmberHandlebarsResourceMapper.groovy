@@ -16,7 +16,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
     def phase = MapperPhase.GENERATION
 
-    static defaultIncludes = ['**/*.em.handlebars']
+    static defaultIncludes = ['**/*.emberhandlebars']
 
     def map(ResourceMeta resource, config) {
 
@@ -60,7 +60,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
                 templateName -= root
             }
         }
-        templateName = templateName.replaceAll(/(?i)\.em.handlebars$/, '')
+        templateName = templateName.replaceAll(/(?i)\.emberhandlebars$/, '')
         templateName.split('/').findAll().join(pathSeparator)
     }
 
@@ -69,7 +69,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
     }
 
     private String generateCompiledFileFromOriginal(String original) {
-        original.replaceAll(/(?i)\.em.handlebars$/, '_em_handlebars.js')
+        original.replaceAll(/(?i)\.emberhandlebars$/, '_emhandlebars.js')
     }
 
     private File getOriginalFileSystemFile(String sourcePath) {

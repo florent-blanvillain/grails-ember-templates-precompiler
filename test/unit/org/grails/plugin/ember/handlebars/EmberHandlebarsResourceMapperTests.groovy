@@ -21,30 +21,30 @@ class EmberHandlebarsResourceMapperTests {
         ResourceMeta resource = new ResourceMeta()
         Map config = [:]
 
-        resource.sourceUrl = '/templates/test.em.handlebars'
+        resource.sourceUrl = '/templates/test.emberhandlebars'
         assert 'templates/test' == mapper.calculateTemplateName(resource, config)
 
-        resource.sourceUrl = '/js/test.em.handlebars'
+        resource.sourceUrl = '/js/test.emberhandlebars'
         assert 'js/test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js'
-        resource.sourceUrl = '/js/test.em.handlebars'
+        resource.sourceUrl = '/js/test.emberhandlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js/templates'
-        resource.sourceUrl = '/js/templates/test.em.handlebars'
+        resource.sourceUrl = '/js/templates/test.emberhandlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js/templates/'
-        resource.sourceUrl = '/js/templates/test.em.handlebars'
+        resource.sourceUrl = '/js/templates/test.emberhandlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = '/js/templates'
-        resource.sourceUrl = '/js/templates/test.em.handlebars'
+        resource.sourceUrl = '/js/templates/test.emberhandlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'templates'
-        resource.sourceUrl = '/js/templates/test.em.handlebars'
+        resource.sourceUrl = '/js/templates/test.emberhandlebars'
         assert 'js/templates/test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'templates'
@@ -53,7 +53,7 @@ class EmberHandlebarsResourceMapperTests {
 
         config.templatesRoot = 'templates'
         config.templatesPathSeparator = '-'
-        resource.sourceUrl = '/templates/foo/bar/test.em.handlebars'
+        resource.sourceUrl = '/templates/foo/bar/test.emberhandlebars'
         assert 'foo-bar-test' == mapper.calculateTemplateName(resource, config)
     }
 }

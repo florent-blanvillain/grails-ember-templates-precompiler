@@ -39,8 +39,8 @@ function anonymous(Handlebars, depth0, helpers, partials, data) {
     @Test
     void precompile() {
         (1..3).each {
-            File input = loadFile("input.${it}.em.handlebars")
-            File expected = loadFile("output.${it}_em_handlebars.js")
+            File input = loadFile("input.${it}.emberhandlebars")
+            File expected = loadFile("output.${it}_emberhandlebars.js")
             File target = File.createTempFile('target', '.js')
 
             precompiler.precompile(input, target, 'input')
