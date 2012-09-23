@@ -1,4 +1,4 @@
-package org.grails.plugin.handlebars
+package org.grails.plugin.ember.handlebars
 
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.codehaus.groovy.grails.plugins.support.aware.GrailsApplicationAware
@@ -16,7 +16,7 @@ class HandlebarsResourceMapper implements GrailsApplicationAware {
 
     def phase = MapperPhase.GENERATION
 
-    static defaultIncludes = ['**/*.handlebars']
+    static defaultIncludes = ['**/*.em.handlebars']
 
     def map(ResourceMeta resource, config) {
 
@@ -29,7 +29,7 @@ class HandlebarsResourceMapper implements GrailsApplicationAware {
         if (resource.sourceUrl) {
             File target = new File(generateCompiledFileFromOriginal(originalFile.absolutePath))
 
-            log.debug "Compiling handlebars file [${originalFile}] into [${target}]"
+            log.debug "Compiling emberjs handlebars file [${originalFile}] into [${target}]"
 
             try {
                 precompiler.precompile input, target, templateName
@@ -39,7 +39,7 @@ class HandlebarsResourceMapper implements GrailsApplicationAware {
                 resource.contentType = 'text/javascript'
                 resource.updateActualUrlFromProcessedFile()
             } catch (e) {
-                log.error "error precompiling handlebars file: ${originalFile}", e
+                log.error "error precompiling emberjs handlebars file: ${originalFile}", e
             }
         }
     }
@@ -60,7 +60,7 @@ class HandlebarsResourceMapper implements GrailsApplicationAware {
                 templateName -= root
             }
         }
-        templateName = templateName.replaceAll(/(?i)\.handlebars$/, '')
+        templateName = templateName.replaceAll(/(?i)\.em.handlebars$/, '')
         templateName.split('/').findAll().join(pathSeparator)
     }
 
@@ -69,7 +69,7 @@ class HandlebarsResourceMapper implements GrailsApplicationAware {
     }
 
     private String generateCompiledFileFromOriginal(String original) {
-        original.replaceAll(/(?i)\.handlebars$/, '_handlebars.js')
+        original.replaceAll(/(?i)\.em.handlebars$/, '_em_handlebars.js')
     }
 
     private File getOriginalFileSystemFile(String sourcePath) {

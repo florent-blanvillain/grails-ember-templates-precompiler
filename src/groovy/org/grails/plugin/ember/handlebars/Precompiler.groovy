@@ -1,4 +1,4 @@
-package org.grails.plugin.handlebars
+package org.grails.plugin.ember.handlebars
 
 import org.mozilla.javascript.Scriptable
 import org.mozilla.javascript.Function

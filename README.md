@@ -1,19 +1,19 @@
 # Handlebars.js Resources plug-in for Grails
 
-This plug-in supports using [Handlebars.js](http://handlebarsjs.com/) templates with the Grails [Resources Plugin](http://www.grails.org/plugin/resources).
-This plugin includes a resource mapper that will [precompile](http://handlebarsjs.com/precompilation.html) the template files into JavaScript and
-make it available for other resource processing, including minification and bundling. The Handlebars.js resource files are also included.
+This plug-in supports using Handlebars.js templates with the Grails Resources Plugin. This plugin includes a resource mapper that will precompile
+the template files into JavaScript and make it available for other resource processing, including minification and bundling.
+It's a simple fork from Matt Sheehan grails-handlebars-resources plugin.
 
 ## Installation
 
-    grails install-plugin handlebars-resources
+    grails install-plugin ember-handlebars-resources
 
 ## Usage
 
 ### Declaring Resources
 
     application {
-        dependsOn 'handlebars_runtime'
+        dependsOn 'your-emberjs-and-handlebars-resource-module'
         resource url: 'templates/person.handlebars', attrs: [type: 'js'], bundle:'bundle_application'
         resource url: 'templates/error.handlebars', attrs: [type: 'js'], bundle:'bundle_application'
         resource url:'js/application.js'

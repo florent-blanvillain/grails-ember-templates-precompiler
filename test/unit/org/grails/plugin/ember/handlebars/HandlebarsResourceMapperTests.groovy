@@ -1,4 +1,4 @@
-package org.grails.plugin.handlebars
+package org.grails.plugin.ember.handlebars
 
 import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
@@ -21,30 +21,30 @@ class HandlebarsResourceMapperTests {
         ResourceMeta resource = new ResourceMeta()
         Map config = [:]
 
-        resource.sourceUrl = '/templates/test.handlebars'
+        resource.sourceUrl = '/templates/test.em.handlebars'
         assert 'templates/test' == mapper.calculateTemplateName(resource, config)
 
-        resource.sourceUrl = '/js/test.handlebars'
+        resource.sourceUrl = '/js/test.em.handlebars'
         assert 'js/test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js'
-        resource.sourceUrl = '/js/test.handlebars'
+        resource.sourceUrl = '/js/test.em.handlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js/templates'
-        resource.sourceUrl = '/js/templates/test.handlebars'
+        resource.sourceUrl = '/js/templates/test.em.handlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'js/templates/'
-        resource.sourceUrl = '/js/templates/test.handlebars'
+        resource.sourceUrl = '/js/templates/test.em.handlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = '/js/templates'
-        resource.sourceUrl = '/js/templates/test.handlebars'
+        resource.sourceUrl = '/js/templates/test.em.handlebars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'templates'
-        resource.sourceUrl = '/js/templates/test.handlebars'
+        resource.sourceUrl = '/js/templates/test.em.handlebars'
         assert 'js/templates/test' == mapper.calculateTemplateName(resource, config)
 
         config.templatesRoot = 'templates'
@@ -53,7 +53,7 @@ class HandlebarsResourceMapperTests {
 
         config.templatesRoot = 'templates'
         config.templatesPathSeparator = '-'
-        resource.sourceUrl = '/templates/foo/bar/test.handlebars'
+        resource.sourceUrl = '/templates/foo/bar/test.em.handlebars'
         assert 'foo-bar-test' == mapper.calculateTemplateName(resource, config)
     }
 }

@@ -1,4 +1,4 @@
-package org.grails.plugin.handlebars
+package org.grails.plugin.ember.handlebars
 
 import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
@@ -39,8 +39,8 @@ function anonymous(Handlebars, depth0, helpers, partials, data) {
     @Test
     void precompile() {
         (1..3).each {
-            File input = loadFile("input.${it}.handlebars")
-            File expected = loadFile("output.${it}_handlebars.js")
+            File input = loadFile("input.${it}.em.handlebars")
+            File expected = loadFile("output.${it}_em_handlebars.js")
             File target = File.createTempFile('target', '.js')
 
             precompiler.precompile(input, target, 'input')

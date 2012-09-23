@@ -12,11 +12,10 @@ class HandlebarsResourcesGrailsPlugin {
     def description = '''\
 This plug-in supports using Handlebars.js templates with the Grails Resources Plugin. This plugin includes a resource mapper that will precompile
 the template files into JavaScript and make it available for other resource processing, including minification and bundling.
-The Handlebars.js resource files are also included.
+It's a simple fork from Matt Sheehan grails-handlebars-resources plugin.
 '''
-    def documentation = "https://github.com/sheehan/grails-handlebars-resources/blob/master/README.md"
+    def documentation = "https://github.com/florent-blanvillain/grails-ember-handlebars-resources/blob/master/README.md"
     def license = "APACHE"
-    def issueManagement = [ system: "github", url: "https://github.com/sheehan/grails-handlebars-resources/issues" ]
-    def scm = [ url: "https://github.com/sheehan/grails-handlebars-resources" ]
-    // todo compléter tout ça
+    def issueManagement = [ system: "github", url: "https://github.com/florent-blanvillain/grails-ember-handlebars-resources/issues" ]
+    def scm = [ url: "https://github.com/florent-blanvillain/grails-ember-handlebars-resources" ]
 }
