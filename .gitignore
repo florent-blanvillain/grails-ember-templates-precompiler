@@ -2,10 +2,8 @@
 target/
 target-eclipse/
 out/
-mcl.properties
-mcl.xml
-module_mcl-grailsplugins.xml
-module_mcl.xml
+/*.xml
+/*.zip
 stacktrace.log
 
 # Numerous always-ignore extensions
