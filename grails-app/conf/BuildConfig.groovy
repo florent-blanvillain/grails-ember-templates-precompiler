@@ -30,4 +30,8 @@ grails.project.dependency.resolution = {
         }
         runtime ":resources:1.2-RC1"
     }
+
+    dependencies {
+        runtime 'org.mozilla:rhino:1.7R4'
+    }
 }
