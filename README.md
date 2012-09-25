@@ -7,56 +7,54 @@ The goals are:
 * readability: templates are in plain text files (not in gsp, or in javascript strings). They can be along with the ember app.
 * performance: (of course)
 
-## Typical use case
-
-# directory structure
-
-    web-app
-    ├── js
-    │   ├── ember-app
-    │   │   ├── controllers
-    │   │   │   ├── annuaire.js
-    │   │   │   └── tabs.js
-    │   │   ├── app.js
-    │   │   ├── templates
-    │   │   │   ├── annuaireitem.emberhandlebars
-    │   │   │   └── tab.emberhandlebars
-    │   │   └── views
-    │   │       ├── annuaireItem.js
-    │   │       ├── annuaire.js
-    │   │       ├── tab.js
-    │   │       └── tabs.js
-
-
 ## Installation
 
-    add :
+add this line to BuildConfig.groovy
      runtime ":ember-handlebars-resources:0.1-SNAPSHOT"
-    in BuildConfig.groovy
-    warning : this plugin requires rhino 1.7R4 (and certainly above). previous version must be exclude from other plugins. Typically, if you use lesscss resources and handlebars
-    resources plugin:
-            compile (":lesscss-resources:1.3.0.3") {
-                excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
-            }
-            runtime (":handlebars-resources:0.3.1")  {
-                excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
-            }
+
+**warning** : this plugin requires rhino 1.7R4 (and above). previous version should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
+resources plugin:
+
+        compile (":lesscss-resources:1.3.0.3") {
+            excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
+        }
+        runtime (":handlebars-resources:0.3.1")  {
+            excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
+        }
 
 ## Usage
 
-### Declaring Resources
+### Directory Structure Example
 
-    application {
-        dependsOn 'your-emberjs-and-handlebars-resource-module'
-        resource url: 'templates/person.emberhandlebars', attrs: [type: 'js'], bundle:'bundle_application'
-        resource url: 'templates/error.emberhandlebars', attrs: [type: 'js'], bundle:'bundle_application'
-        resource url:'js/application.js'
+    web-app
+    ├── js
+    │   ├── emberapp
+    │   │   ├── app.js
+    │   │   ├── controllers
+    │   │   │   ├── user.js
+    │   │   │   └── tabs.js
+    │   │   ├── templates
+    │   │   │   ├── user.embbars
+    │   │   │   └── tab.embbars
+    │   │   └── views
+    │   │       ├── user.js
+    │   │       ├── tab.js
+
+Note: I chose '.embbars' to be the arbitrary extension managed by this plugin; My first thought was '.emberhandlebars' but it's just too long for me...
+
+### Declaring Resources (following the previous example)
+
+    emberapp {
+        dependsOn 'handlebars,emberjs' // previously declared modules
+        resource url: 'js/ember-app/app.js'
+        resource url: 'js/ember-app/controllers/user.js'
+        resource url: 'js/ember-app/controllers/tabs.js'
+        resource url: 'js/ember-app/templates/user.embbars', attrs: [type: 'js'], bundle:'bundle_emberapp'
+        resource url: 'js/ember-app/templates/tab.embbars', attrs: [type: 'js'], bundle:'bundle_emberapp'
+        resource url: 'js/ember-app/views/user.js'
+        resource url: 'js/ember-app/views/tab.js'
     }
 
-#### Settings
-
-*   **dependsOn**: `handlebars` or `handlebars_runtime`. If only using precompiled templates the smaller handlebars_runtime should be used.
-*   **url**: location of the handlebars template file.
 *   **attrs[type]**: must be `js`.
 *   **bundle**: must be set as will not default correctly. To add to default bundle use `bundle_<module name>`.
 
