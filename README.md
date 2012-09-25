@@ -1,11 +1,45 @@
 # Handlebars.js Resources plug-in for Grails
 
 This plug-in is for precompiling emberjs's handlebars templates on the server side. It integrates with grails resources plugin to allow subsequent minification gzip and more.
-It's a simple fork from Matt Sheehan grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
+It's a simple fork from Matt Sheehan's grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
+
+The goals are:
+* readability: templates are in plain text files (not in gsp, or in javascript strings). They can be along with the ember app.
+* performance: (of course)
+
+## Typical use case
+
+# directory structure
+web-app
+├── js
+│   ├── ember-app
+│   │   ├── controllers
+│   │   │   ├── annuaire.js
+│   │   │   └── tabs.js
+│   │   ├── app.js
+│   │   ├── templates
+│   │   │   ├── annuaireitem.emberhandlebars
+│   │   │   └── tab.emberhandlebars
+│   │   └── views
+│   │       ├── annuaireItem.js
+│   │       ├── annuaire.js
+│   │       ├── tab.js
+│   │       └── tabs.js
+
 
 ## Installation
 
-    grails install-plugin ember-handlebars-resources
+    add :
+     runtime ":ember-handlebars-resources:0.1-SNAPSHOT"
+    in BuildConfig.groovy
+    warning : this plugin requires rhino 1.7R4 (and certainly above). previous version must be exclude from other plugins. Typically, if you use lesscss resources and handlebars
+    resources plugin:
+            compile (":lesscss-resources:1.3.0.3") {
+                excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
+            }
+            runtime (":handlebars-resources:0.3.1")  {
+                excludes([ group: 'rhino', name: 'js'],[name: 'rhino'])
+            }
 
 ## Usage
 
@@ -13,8 +47,8 @@ It's a simple fork from Matt Sheehan grails-handlebars-resources plugin but unli
 
     application {
         dependsOn 'your-emberjs-and-handlebars-resource-module'
-        resource url: 'templates/person.handlebars', attrs: [type: 'js'], bundle:'bundle_application'
-        resource url: 'templates/error.handlebars', attrs: [type: 'js'], bundle:'bundle_application'
+        resource url: 'templates/person.emberhandlebars', attrs: [type: 'js'], bundle:'bundle_application'
+        resource url: 'templates/error.emberhandlebars', attrs: [type: 'js'], bundle:'bundle_application'
         resource url:'js/application.js'
     }
 
