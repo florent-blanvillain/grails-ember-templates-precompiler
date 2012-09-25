@@ -1,7 +1,9 @@
-# Ember.js Handlebars's templates Resources plug-in for Grails
+# Ember.js templates resources plug-in for Grails
 
-This plug-in precompiles Ember.js's handlebars templates on the server side. Ember.js adds specific features to Handlebars, consequently Handlebars Resources plugin cannot be used in this case.
+This plug-in precompiles Ember.js's Handlebars templates on the server side.
+
 It integrates with grails resources plugin to allow subsequent minification, gzip and more.
+
 It's a simple fork from Matt Sheehan's grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
 
 The goals are:
@@ -94,6 +96,12 @@ All configuration variables should be relative to:
 
 *   **templatesRoot**: The root folder of the templates relative to `web-app`. This value will be stripped from template paths when calculating the template name. Default is none.
 *   **templatesPathSeparator**: The delimiter to use for template names. Default is `/`
+
+## Notes
+
+* In the current 0.1 version, the plugin makes internal use of *ember-1.0.pre.js* and *handlebars-1.0.rc.1.js*. Those resources are not exposed.
+* headless-ember.js (from github's ember code repo) is used (various stubs, such as the window object, so that ember can be used in rhino)
+* IntelliJ has a plugin for Handlebars, you can use it to highlight syntax of *.embbars
 
 ## Changelog
 

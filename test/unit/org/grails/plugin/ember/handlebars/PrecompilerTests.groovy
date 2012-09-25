@@ -26,7 +26,7 @@ class PrecompilerTests {
         String expected = """
 function anonymous(Handlebars, depth0, helpers, partials, data) {
     helpers = helpers || Ember.Handlebars.helpers;
-    var foundHelper, self = this;
+    data = data || {};
     data.buffer.push("<div>Simple</div>");
 }
         """

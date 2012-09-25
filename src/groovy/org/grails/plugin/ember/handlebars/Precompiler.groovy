@@ -12,9 +12,8 @@ class Precompiler {
 
     Precompiler(Map options = [:]) {
         ClassLoader classLoader = getClass().classLoader
-        URL handlebars = classLoader.getResource('handlebars-1.0.0.beta.6.js')
-        URL headlessEmberjs = classLoader.getResource('headless-ember.js')  // file found into emberjs github project, it brings some fake objects (like windows), so rhino can
-        // swallow emberjs
+        URL handlebars = classLoader.getResource('handlebars-1.0.rc.1.js')
+        URL headlessEmberjs = classLoader.getResource('headless-ember.js')  // file from ember github project, it brings some fake objects (like windows), so rhino can swallow ember.js
         URL emberjs = classLoader.getResource('ember-1.0.pre.js')
         Context cx = Context.enter()
         cx.optimizationLevel = 9
