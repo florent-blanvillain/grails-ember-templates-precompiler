@@ -1,18 +1,19 @@
-# Handlebars.js Resources plug-in for Grails
+# Ember.js Handlebars's templates Resources plug-in for Grails
 
-This plug-in is for precompiling emberjs's handlebars templates on the server side. It integrates with grails resources plugin to allow subsequent minification gzip and more.
+This plug-in precompiles Ember.js's handlebars templates on the server side. Ember.js adds specific features to Handlebars, consequently Handlebars Resources plugin cannot be used in this case.
+It integrates with grails resources plugin to allow subsequent minification, gzip and more.
 It's a simple fork from Matt Sheehan's grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
 
 The goals are:
-* readability: templates are in plain text files (not in gsp, or in javascript strings). They can be along with the ember app.
-* performance: (of course)
+* Readability: templates are in plain text files (not in gsp, or in javascript strings). They can be along with the ember app.
+* Performance: (obviously)
 
 ## Installation
 
 add this line to BuildConfig.groovy
      runtime ":ember-handlebars-resources:0.1-SNAPSHOT"
 
-**warning** : this plugin requires rhino 1.7R4 (and above). previous version should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
+**warning** : this plugin requires rhino 1.7R4 (and above). Previous versions should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
 resources plugin:
 
         compile (":lesscss-resources:1.3.0.3") {
@@ -58,50 +59,44 @@ Note: I chose '.embbars' to be the arbitrary extension managed by this plugin; M
 *   **attrs[type]**: must be `js`.
 *   **bundle**: must be set as will not default correctly. To add to default bundle use `bundle_<module name>`.
 
-### Using in the Browser
+### Using with Ember.js views
 
-Template functions are stored in the `Handlebars.templates` object using the template name. If the template name is
-`person/show`, then the template function can be accessed from `Handlebars.templates['person/show']`. See the Template Names section for how template names are calculated.
+Simply give the template name (see next section) to the view:
 
-See the [Handlebars.js website](http://handlebarsjs.com/) for more information on using Handlebars template functions.
+    userView = Ember.View.extend({
+        templateName: 'user'
+    });
+
+See the [Ember.js Handlebars section](http://emberjs.com/documentation/#toc_describing-your-ui-with-handlebars) for more information.
 
 ## Template Names
 
-Template names are based on the resource URL. If the URL is `templates/foo.handlebars`, then the template name will be `templates/foo`.
-Note that the `.handlebars` extension is removed.
+Template names are based on the resource URL. If the URL is `js/ember-app/templates/foo.embbars`, then the template name will be `js/ember-app/templates/user`.
+Note that the `.embbars` extension is removed.
+The templatesRoot config value should be used to customize this name to your needs. For example, adding
+
+    grails.resources.mappers.emberhandlebars.templatesRoot = 'js/ember-app/templates'
+
+will change the template name to just `user`.
 
 The default path separator is `/`. If you want to change it, you can specify a value for `templatesPathSeparator` in the configuration. For example,
 adding
 
-    grails.resources.mappers.handlebars.templatesPathSeparator = '.'
+    grails.resources.mappers.emberhandlebars.templatesPathSeparator = '.'
 
-will change the template name to `templates.foo`.
-
-If you specify a value for `templatesRoot` in the configuration, then that value will be stripped from the template name. For example, adding
-
-    grails.resources.mappers.handlebars.templatesRoot = 'templates'
-
-will change the template name to just `foo`.
+will change the template name to `js.ember-app.templates.user` in the case you haven't set the templatesRoot config value
 
 ## Configuration
 
 All configuration variables should be relative to:
 
-    grails.resources.mappers.handlebars
+    grails.resources.mappers.emberhandlebars
 
 *   **templatesRoot**: The root folder of the templates relative to `web-app`. This value will be stripped from template paths when calculating the template name. Default is none.
 *   **templatesPathSeparator**: The delimiter to use for template names. Default is `/`
 
 ## Changelog
 
-### v0.3.1
+### v0.1
 
-*   fixed issue #2
-
-### v0.3
-
-*   changed default templatesPathSeparator to `/`
-
-### v0.2
-
-*   Updated template naming scheme to handle nested templates in a manner similar to the [ember-rails plugin](https://github.com/emberjs/ember-rails)
+* first release
