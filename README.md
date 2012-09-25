@@ -10,21 +10,22 @@ The goals are:
 ## Typical use case
 
 # directory structure
->web-app
->├── js
->│   ├── ember-app
->│   │   ├── controllers
->│   │   │   ├── annuaire.js
->│   │   │   └── tabs.js
->│   │   ├── app.js
->│   │   ├── templates
->│   │   │   ├── annuaireitem.emberhandlebars
->│   │   │   └── tab.emberhandlebars
->│   │   └── views
->│   │       ├── annuaireItem.js
->│   │       ├── annuaire.js
->│   │       ├── tab.js
->│   │       └── tabs.js
+
+    web-app
+    ├── js
+    │   ├── ember-app
+    │   │   ├── controllers
+    │   │   │   ├── annuaire.js
+    │   │   │   └── tabs.js
+    │   │   ├── app.js
+    │   │   ├── templates
+    │   │   │   ├── annuaireitem.emberhandlebars
+    │   │   │   └── tab.emberhandlebars
+    │   │   └── views
+    │   │       ├── annuaireItem.js
+    │   │       ├── annuaire.js
+    │   │       ├── tab.js
+    │   │       └── tabs.js
 
 
 ## Installation
