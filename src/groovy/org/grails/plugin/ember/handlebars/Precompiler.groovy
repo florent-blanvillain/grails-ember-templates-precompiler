@@ -23,7 +23,7 @@ class Precompiler {
         cx.evaluateString scope, handlebars.text, handlebars.file, 1, null
         cx.evaluateString scope, headlessEmberjs.text, headlessEmberjs.file, 1, null
         cx.evaluateString scope, emberjs.text, emberjs.file, 1, null
-        precompile = scope.get("precompileEmberHandlebars", scope) // function from headless ember, thanks guys.. (it doesn't work when accessing from Ember.Handlebars.precompile)
+        precompile = scope.get("precompileEmberHandlebars", scope) // precompileEmberHandlebars is a function from headless-ember.js (it doesn't work when accessing from Ember.Handlebars.precompile)
         Context.exit();
     }
 

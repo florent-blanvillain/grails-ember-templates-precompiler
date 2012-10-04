@@ -1,4 +1,4 @@
-# Ember.js templates resources plug-in for Grails
+# Ember.js templates precompiler plug-in for Grails
 
 This plug-in precompiles EmberJS powered Handlebars templates on the server side.
 
@@ -15,7 +15,7 @@ The goals are:
 ## Installation
 
 add this line to BuildConfig.groovy
-     runtime ":ember-handlebars-resources:0.1"
+     runtime ":ember-templates-precompiler:0.1"
 
 **warning** : this plugin requires rhino 1.7R4 (and above). Previous versions should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
 resources plugin:
@@ -103,11 +103,11 @@ All configuration variables should be relative to:
 ## Notes
 
 * In the current 0.1 version, the plugin makes internal use of `ember-1.0.pre.js` and `handlebars-1.0.rc.1.js`. Those resources are not exposed.
-* headless-ember.js (from github's ember code repo) is used (various stubs, such as the window object), so that ember can be used in rhino.
+* headless-ember.js ([from github's ember code repo](https://github.com/emberjs/ember.js/blob/master/lib/headless-ember.js)) is used (various stubs, such as the window object), so that ember can be used in rhino.
 * IntelliJ has a plugin for Handlebars, you can use it to highlight syntax of `*.embbars` files.
 
 ## Changelog
 
 ### v0.1
 
-* first release
+* first release : `ember-1.0.pre.js` and `handlebars-1.0.rc.1.js`
