@@ -1,19 +1,21 @@
 # Ember.js templates resources plug-in for Grails
 
-This plug-in precompiles Ember.js's Handlebars templates on the server side.
+This plug-in precompiles EmberJS powered Handlebars templates on the server side.
 
 It integrates with grails resources plugin to allow subsequent minification, gzip and more.
 
-It's a simple fork from Matt Sheehan's grails-handlebars-resources plugin but unlike the latter it does not declare any resource module.
+It's a fork from Matt Sheehan's grails-handlebars-resources plugin with two differences :
+- it specifically targets Handlebars heavily customized by EmberJs templates
+- it does not declare any resource module.
 
 The goals are:
-* Readability: templates are in plain text files (not in gsp, or in javascript strings). They can be along with the ember app.
+* Cleanliness and readability: templates are compiled from plain text files (not embedded somewhere in a gsp, not in javascript strings) and can be in the same directory as your Ember Application is.
 * Performance: (obviously)
 
 ## Installation
 
 add this line to BuildConfig.groovy
-     runtime ":ember-handlebars-resources:0.1-SNAPSHOT"
+     runtime ":ember-handlebars-resources:0.1"
 
 **warning** : this plugin requires rhino 1.7R4 (and above). Previous versions should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
 resources plugin:
@@ -43,7 +45,7 @@ resources plugin:
     │   │       ├── user.js
     │   │       ├── tab.js
 
-Note: I chose '.embbars' to be the arbitrary extension managed by this plugin; My first thought was '.emberhandlebars' but it's just too long for me...
+Note: I chose '.embbars' to be the arbitrary extension managed by this plugin; My first clean thought was `.emberhandlebars` but it was just too long for me...
 
 ### Declaring Resources (following the previous example)
 
@@ -73,9 +75,10 @@ See the [Ember.js Handlebars section](http://emberjs.com/documentation/#toc_desc
 
 ## Template Names
 
-Template names are based on the resource URL. If the URL is `js/ember-app/templates/foo.embbars`, then the template name will be `js/ember-app/templates/user`.
-Note that the `.embbars` extension is removed.
-The templatesRoot config value should be used to customize this name to your needs. For example, adding
+Template names are based on the resource relative paths.
+If the relative path to the `web-app` directory is `js/ember-app/templates/foo.embbars`, then the template name will be `js/ember-app/templates/user`.
+The `.embbars` extension is of course removed.
+The `templatesRoot` config value should be used to customize this name to your needs. For example, adding
 
     grails.resources.mappers.emberhandlebars.templatesRoot = 'js/ember-app/templates'
 
@@ -86,7 +89,7 @@ adding
 
     grails.resources.mappers.emberhandlebars.templatesPathSeparator = '.'
 
-will change the template name to `js.ember-app.templates.user` in the case you haven't set the templatesRoot config value
+will change the template name to `js.ember-app.templates.user` in the case you have left the templatesRoot config value to its default.
 
 ## Configuration
 
@@ -99,9 +102,9 @@ All configuration variables should be relative to:
 
 ## Notes
 
-* In the current 0.1 version, the plugin makes internal use of *ember-1.0.pre.js* and *handlebars-1.0.rc.1.js*. Those resources are not exposed.
-* headless-ember.js (from github's ember code repo) is used (various stubs, such as the window object, so that ember can be used in rhino)
-* IntelliJ has a plugin for Handlebars, you can use it to highlight syntax of *.embbars
+* In the current 0.1 version, the plugin makes internal use of `ember-1.0.pre.js` and `handlebars-1.0.rc.1.js`. Those resources are not exposed.
+* headless-ember.js (from github's ember code repo) is used (various stubs, such as the window object), so that ember can be used in rhino.
+* IntelliJ has a plugin for Handlebars, you can use it to highlight syntax of `*.embbars` files.
 
 ## Changelog
 
