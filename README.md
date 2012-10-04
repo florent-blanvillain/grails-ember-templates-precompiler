@@ -14,8 +14,9 @@ The goals are:
 
 ## Installation
 
-add this line to BuildConfig.groovy
-     runtime ":ember-templates-precompiler:0.1"
+Add this line to BuildConfig.groovy plugins section :
+
+        runtime ":ember-templates-precompiler:0.1"
 
 **warning** : this plugin requires rhino 1.7R4 (and above). Previous versions should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
 resources plugin:
