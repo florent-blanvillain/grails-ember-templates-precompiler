@@ -5,7 +5,7 @@ This plug-in precompiles EmberJS powered Handlebars templates on the server side
 It integrates with grails resources plugin to allow subsequent minification, gzip and more.
 
 It's a fork from Matt Sheehan's grails-handlebars-resources plugin with two differences :
-- it specifically targets Handlebars heavily customized by EmberJs templates
+- it specifically targets Handlebars templates with added EmberJS capabilities
 - it does not declare any resource module.
 
 The goals are:
