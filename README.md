@@ -76,10 +76,10 @@ See the [Ember.js Handlebars section](http://emberjs.com/documentation/#toc_desc
 
 ## Template Names
 
-Template names are based on the resource relative paths.
-If the relative path to the `web-app` directory is `js/ember-app/templates/foo.embbars`, then the template name will be `js/ember-app/templates/user`.
+Template names are based on `web-app` relative paths.
+If the relative path is `js/ember-app/templates/user.embbars`, then the template name will be `"js/ember-app/templates/user"`.
 The `.embbars` extension is of course removed.
-The `templatesRoot` config value should be used to customize this name to your needs. For example, adding
+The `templatesRoot` config value should be used to customize this name to your needs. For example, setting
 
     grails.resources.mappers.emberhandlebars.templatesRoot = 'js/ember-app/templates'
 
@@ -90,9 +90,10 @@ adding
 
     grails.resources.mappers.emberhandlebars.templatesPathSeparator = '.'
 
-will change the template name to `js.ember-app.templates.user` in the case you have left the templatesRoot config value to its default.
+will change the template name to `js.ember-app.templates.user` (in the case you haven't set the templatesRoot config value).
 
 ## Configuration
+
 
 All configuration variables should be relative to:
 
@@ -102,6 +103,7 @@ All configuration variables should be relative to:
 *   **templatesPathSeparator**: The delimiter to use for template names. Default is `/`
 
 ## Notes
+
 
 * In the current 0.1 version, the plugin makes internal use of `ember-1.0.pre.js` and `handlebars-1.0.rc.1.js`. Those resources are not exposed.
 * headless-ember.js ([from github's ember code repo](https://github.com/emberjs/ember.js/blob/master/lib/headless-ember.js)) is used (various stubs, such as the window object), so that ember can be used in rhino.
