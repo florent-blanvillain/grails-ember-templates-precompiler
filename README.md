@@ -30,6 +30,8 @@ resources plugin:
 
 ## Usage
 
+You can see a possible usage of this plugin here : [grails-ember-trek](https://github.com/florent-blanvillain/grails-ember-trek)
+
 ### Directory Structure Example
 
     web-app
