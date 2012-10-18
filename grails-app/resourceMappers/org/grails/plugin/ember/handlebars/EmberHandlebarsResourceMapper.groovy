@@ -2,8 +2,8 @@ package org.grails.plugin.ember.handlebars
 
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.codehaus.groovy.grails.plugins.support.aware.GrailsApplicationAware
-import org.grails.plugin.resource.mapper.MapperPhase
 import org.grails.plugin.resource.ResourceMeta
+import org.grails.plugin.resource.mapper.MapperPhase
 
 /**
  * @author Matt Sheehan
@@ -46,19 +46,30 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
     String calculateTemplateName(ResourceMeta resource, config) {
         String pathSeparator = getString(config, 'templatesPathSeparator', '/')
-        String root = getString(config, 'templatesRoot')
+        List roots = getList(config, 'templatesRoot') ?: getList(config, 'templatesRoots')
 
         String templateName = resource.sourceUrl
-        if (root) {
+
+        roots = roots.findAll().collect { root ->
             if (!root.startsWith('/')) {
                 root = '/' + root
             }
             if (!root.endsWith('/')) {
                 root += '/'
             }
-            if (templateName.startsWith(root)) {
-                templateName -= root
+            root
+        }
+
+        roots = roots.findAll {
+            templateName.startsWith(it)
+        }
+
+        if (roots) {
+            def closestRoot = roots.min { root ->
+                templateName.size() - root.size()
             }
+
+            templateName -= closestRoot
         }
         templateName = templateName.replaceAll(/(?i)\.embbars$/, '')
         templateName.split('/').findAll().join(pathSeparator)
@@ -66,6 +77,16 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
     private String getString(Map config, String key, String defaultVal = null) {
         config[key] instanceof String ? config[key] : defaultVal
+    }
+
+    private List<String> getList(Map config, String key) {
+        if (config[key] instanceof String) {
+            [config[key]]
+        } else if (config[key] instanceof List<String>) {
+            config[key]
+        } else {
+            []
+        }
     }
 
     private String generateCompiledFileFromOriginal(String original) {

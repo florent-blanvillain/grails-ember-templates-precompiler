@@ -31,6 +31,11 @@ class EmberHandlebarsResourceMapperTests {
         resource.sourceUrl = '/js/test.embbars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
 
+        config = [:]
+        config.templatesRoots = ['js']
+        resource.sourceUrl = '/js/test.embbars'
+        assert 'test' == mapper.calculateTemplateName(resource, config)
+
         config.templatesRoot = 'js/templates'
         resource.sourceUrl = '/js/templates/test.embbars'
         assert 'test' == mapper.calculateTemplateName(resource, config)
@@ -55,5 +60,20 @@ class EmberHandlebarsResourceMapperTests {
         config.templatesPathSeparator = '-'
         resource.sourceUrl = '/templates/foo/bar/test.embbars'
         assert 'foo-bar-test' == mapper.calculateTemplateName(resource, config)
+
+        config.templatesRoot = ['templates','/templates/foo']
+        config.templatesPathSeparator = '-'
+        resource.sourceUrl = '/templates/foo/bar/test.embbars'
+        assert 'bar-test' == mapper.calculateTemplateName(resource, config)
+
+        config.templatesRoot = ['js/templates','/templates']
+        config.templatesPathSeparator = '-'
+        resource.sourceUrl = '/templates/foo/bar/test.embbars'
+        assert 'foo-bar-test' == mapper.calculateTemplateName(resource, config)
+
+        config.templatesRoot = ['js/templates','js/myapp/tmpl/']
+        config.templatesPathSeparator = '-'
+        resource.sourceUrl = '/js/myapp/tmpl/test.embbars'
+        assert 'test' == mapper.calculateTemplateName(resource, config)
     }
 }
