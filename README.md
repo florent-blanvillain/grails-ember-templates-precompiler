@@ -87,6 +87,10 @@ The `templatesRoot` config value should be used to customize this name to your n
 
 will change the template name to just `user`.
 
+The plugin also supports multiple roots, but be aware of possible name conflicts. Example:
+
+    grails.resources.mappers.emberhandlebars.templatesRoots = ['js/ember-app/templates','js/other-ember-app/templates']
+
 The default path separator is `/`. If you want to change it, you can specify a value for `templatesPathSeparator` in the configuration. For example,
 adding
 
@@ -102,6 +106,7 @@ All configuration variables should be relative to:
     grails.resources.mappers.emberhandlebars
 
 *   **templatesRoot**: The root folder of the templates relative to `web-app`. This value will be stripped from template paths when calculating the template name. Default is none.
+*   **templatesRoots**: The same as above but accepts a list.
 *   **templatesPathSeparator**: The delimiter to use for template names. Default is `/`
 
 ## Notes
