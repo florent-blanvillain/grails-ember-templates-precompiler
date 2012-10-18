@@ -118,6 +118,10 @@ All configuration variables should be relative to:
 
 ## Changelog
 
+### v0.2
+
+* support for multiple templates roots
+
 ### v0.1
 
 * first release : `ember-1.0.pre.js` and `handlebars-1.0.rc.1.js`
