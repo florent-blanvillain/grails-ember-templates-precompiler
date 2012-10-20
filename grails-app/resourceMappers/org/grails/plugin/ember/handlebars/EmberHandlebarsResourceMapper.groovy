@@ -4,6 +4,7 @@ import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.codehaus.groovy.grails.plugins.support.aware.GrailsApplicationAware
 import org.grails.plugin.resource.ResourceMeta
 import org.grails.plugin.resource.mapper.MapperPhase
+import org.grails.plugin.resource.JavaScriptBundleResourceMeta
 
 /**
  * @author Matt Sheehan
@@ -26,7 +27,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
         String templateName = calculateTemplateName(resource, config)
 
-        if (resource.sourceUrl) {
+        if (resource.sourceUrl && !resource instanceof JavaScriptBundleResourceMeta) {
             File target = new File(generateCompiledFileFromOriginal(originalFile.absolutePath))
 
             log.debug "Compiling emberjs handlebars file [${originalFile}] into [${target}]"
@@ -90,7 +91,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
     }
 
     private String generateCompiledFileFromOriginal(String original) {
-        original.replaceAll(/(?i)\.embbars$/, '_emhandlebars.js')
+        original.replaceAll(/(?i)\.embbars$/, '_embbars.js')
     }
 
     private File getOriginalFileSystemFile(String sourcePath) {
