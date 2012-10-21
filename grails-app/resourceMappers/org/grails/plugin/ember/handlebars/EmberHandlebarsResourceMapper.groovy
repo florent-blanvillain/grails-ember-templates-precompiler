@@ -27,7 +27,7 @@ class EmberHandlebarsResourceMapper implements GrailsApplicationAware {
 
         String templateName = calculateTemplateName(resource, config)
 
-        if (resource.sourceUrl && !resource instanceof JavaScriptBundleResourceMeta) {
+        if (resource.sourceUrl && !resource.originalUrl?.contains('bundle-')) {
             File target = new File(generateCompiledFileFromOriginal(originalFile.absolutePath))
 
             log.debug "Compiling emberjs handlebars file [${originalFile}] into [${target}]"
