@@ -118,6 +118,10 @@ All configuration variables should be relative to:
 
 ## Changelog
 
+### v0.2.1
+
+* non-blocking bug fix (learn more in commits comments)
+
 ### v0.2
 
 * support for multiple templates roots
