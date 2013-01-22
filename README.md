@@ -118,6 +118,12 @@ All configuration variables should be relative to:
 
 ## Changelog
 
+### v0.3.0
+
+updates:
+ * ember-1.0.0-pre.4
+ * handlebars-1.0.rc.2.js
+
 ### v0.2.1
 
 * non-blocking bug fix (learn more in commits comments)
