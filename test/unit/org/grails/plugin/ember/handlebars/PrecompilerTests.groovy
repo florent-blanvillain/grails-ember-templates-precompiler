@@ -2,8 +2,8 @@ package org.grails.plugin.ember.handlebars
 
 import grails.test.mixin.TestMixin
 import grails.test.mixin.support.GrailsUnitTestMixin
-import org.junit.Test
 import org.junit.Before
+import org.junit.Test
 
 @TestMixin(GrailsUnitTestMixin)
 class PrecompilerTests {
@@ -37,16 +37,36 @@ function anonymous(Handlebars, depth0, helpers, partials, data) {
     }
 
     @Test
-    void precompile() {
-        (1..3).each {
-            File input = loadFile("input.${it}.embbars")
-            File expected = loadFile("output.${it}_embbars.js")
-            File target = File.createTempFile('target', '.js')
+    void precompile1() {
+        File input = loadFile("input.1.embbars")
+        File expected = loadFile("output.1_embbars.js")
+        File target = File.createTempFile('target', '.js')
 
-            precompiler.precompile(input, target, 'input')
+        precompiler.precompile(input, target, 'input')
 
-            assert expected.text.trim() == target.text.trim()
-        }
+        assert expected.text.trim() == target.text.trim()
+    }
+
+    @Test
+    void precompile2() {
+        File input = loadFile("input.2.embbars")
+        File expected = loadFile("output.2_embbars.js")
+        File target = File.createTempFile('target', '.js')
+
+        precompiler.precompile(input, target, 'input')
+
+        assert expected.text.trim() == target.text.trim()
+    }
+
+    @Test
+    void precompile3() {
+        File input = loadFile("input.3.embbars")
+        File expected = loadFile("output.3_embbars.js")
+        File target = File.createTempFile('target', '.js')
+
+        precompiler.precompile(input, target, 'input')
+
+        assert expected.text.trim() == target.text.trim()
     }
 
     private File loadFile(String name) {
