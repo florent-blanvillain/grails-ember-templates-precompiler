@@ -120,9 +120,7 @@ All configuration variables should be relative to:
 
 ### v0.3.0
 
-updates:
- * ember-1.0.0-pre.4
- * handlebars-1.0.rc.2.js
+* ember update: `ember-1.0.0-pre.4` and `handlebars-1.0.rc.2.js`
 
 ### v0.2.1
 
