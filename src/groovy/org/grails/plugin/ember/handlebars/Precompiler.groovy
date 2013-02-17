@@ -10,20 +10,27 @@ class Precompiler {
     private Scriptable scope
     private Function precompile
 
-    Precompiler(Map options = [:]) {
+    Precompiler() {
         ClassLoader classLoader = getClass().classLoader
+        URL envjs = classLoader.getResource('env.rhino.1.2.js')
         URL handlebars = classLoader.getResource('handlebars-1.0.rc.3.js')
-        URL headlessEmberjs = classLoader.getResource('headless-ember.js')  // file from ember github project, it brings some fake objects (like windows), so rhino can swallow ember.js
+        URL jqueryStub = classLoader.getResource('jquery-stub.js')  // simulates jquery
         URL emberjs = classLoader.getResource('ember-1.0.0-rc.1.js')
         Context cx = Context.enter()
         cx.optimizationLevel = -1
         Global global = new Global()
         global.init cx
         scope = cx.initStandardObjects(global)
+        cx.evaluateString scope, envjs.text, envjs.file, 1, null
         cx.evaluateString scope, handlebars.text, handlebars.file, 1, null
-        cx.evaluateString scope, headlessEmberjs.text, headlessEmberjs.file, 1, null
+        cx.evaluateString scope, jqueryStub.text, jqueryStub.file, 1, null
         cx.evaluateString scope, emberjs.text, emberjs.file, 1, null
-        precompile = scope.get("precompileEmberHandlebars", scope) // precompileEmberHandlebars is a function from headless-ember.js (it doesn't work when accessing from Ember.Handlebars.precompile)
+        cx.evaluateString scope, """
+function precompileEmberHandlebars(string) {
+  return Ember.Handlebars.precompile(string).toString();
+}
+""", "", 1, null
+        precompile = scope.get("precompileEmberHandlebars", scope)
         Context.exit();
     }
 
