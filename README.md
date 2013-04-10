@@ -112,10 +112,16 @@ All configuration variables should be relative to:
 ## Notes
 
 
-* The plugin makes internal use of `ember-xx.js`, `handlebars-xx.js` and `env.rhino.1.2.js` (hammer vs ant..). Those resources are not exposed.
+* The plugin makes internal use of `handlebars-xx.js` and `ember-template-compiler.js` which I found to be part of the distribution of ember after building ember.js myself. Those resources are not exposed.
 * IntelliJ has a plugin for Handlebars, you can use it to highlight syntax of `*.embbars` files.
 
 ## Changelog
+
+### v0.4.1
+
+* compatible with `ember-1.0.0-rc.1` & `ember-1.0.0-rc.2` & current head
+* got rid of ember itself and envjs -> results in performance enhancement
+* log each compiled template name: `debug org.grails.plugin.ember.handlebars` in config/log4j closure
 
 ### v0.4.0
 

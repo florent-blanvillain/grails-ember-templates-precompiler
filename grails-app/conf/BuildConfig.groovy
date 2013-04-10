@@ -26,7 +26,7 @@ grails.project.dependency.resolution = {
               ":release:2.2.0") {
             export = false
         }
-        runtime ":resources:1.2-RC1"
+        runtime ":resources:1.2"
     }
 
     dependencies {
