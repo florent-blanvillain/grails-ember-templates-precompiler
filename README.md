@@ -10,13 +10,13 @@ It's a fork from Matt Sheehan's grails-handlebars-resources plugin with two diff
 
 The goals are:
 * Cleanliness and readability: templates are compiled from plain text files (not embedded somewhere in a gsp, not in javascript strings) and can be in the same directory as your Ember Application is.
-* Performance: (obviously)
+* Performance: template precompilation meets the ember team preconization
 
 ## Installation
 
 Add this line to BuildConfig.groovy plugins section :
 
-        runtime ":ember-templates-precompiler:0.4.0"
+        runtime ":ember-templates-precompiler:0.4.1"
 
 **warning** : this plugin requires rhino 1.7R4 (and above). Previous versions should be excluded from other plugins. Typically, if you use lesscss resources and handlebars
 resources plugin:
@@ -121,7 +121,7 @@ All configuration variables should be relative to:
 
 * compatible with `ember-1.0.0-rc.1` & `ember-1.0.0-rc.2` & current head
 * got rid of ember itself and envjs -> results in performance enhancement
-* log each compiled template name: `debug org.grails.plugin.ember.handlebars` in config/log4j closure
+* log each compiled template name: `debug "org.grails.plugin.ember.handlebars"` in config/log4j closure
 
 ### v0.4.0
 
