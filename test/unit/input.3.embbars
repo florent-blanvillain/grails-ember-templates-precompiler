@@ -4,3 +4,31 @@ User: {{firstName}} {{lastName}}
     <br>
     <b>Hobbies:</b> {{view.hobbies}}
 {{/view}}
+{{#if isLoaded}}
+    <ul class="nav nav-list span2" style="width: 100%">
+        <li><strong><a href="#resume">Informations générales</a></strong></li>
+        <li><strong><a {{action highlight "offers"}}>Offres</a></strong></li>
+        {{#each offers}}
+            {{#view tagName="li"}}<a {{action highlightOffer view._parentView.contentIndex}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{title}}</a>{{/view}}
+        {{else}}
+            <li>Aucune offre</li>
+        {{/each}}
+        <li><strong><a {{action highlight "references"}}>Reférences</a></strong></li>
+        {{#each references}}
+            {{#view tagName="li"}}<a {{action highlightReference view._parentView.contentIndex}}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{title}}</a>{{/view}}
+        {{else}}
+            <li>Aucune référence</li>
+        {{/each}}
+    </ul>
+{{/if}}
+{{#with currentUser}}
+    {{partial user_info}}
+{{/with}}
+{{#with loggedInUser}}
+    Last Login: {{lastLogin}}
+    User Info: {{template "user_info"}}
+{{/with}}
+<div>{{unbound helperName somePropertyThatDoesntChange}}</div>
+{{input value=name}}
+{{input type=checkbox checked=isActive}}
+{{textarea value=name}}

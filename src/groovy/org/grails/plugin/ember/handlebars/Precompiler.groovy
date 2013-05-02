@@ -20,6 +20,9 @@ class Precompiler {
         global.init cx
         scope = cx.initStandardObjects(global)
         cx.evaluateString scope, handlebars.text, handlebars.file, 1, null
+        cx.evaluateString scope, """
+var exports = {}; // for emberTemplateCompiler
+""", "", 1, null
         cx.evaluateString scope, emberTemplateCompiler.text, emberTemplateCompiler.file, 1, null
         cx.evaluateString scope, """
 function precompileEmberHandlebars(string) {

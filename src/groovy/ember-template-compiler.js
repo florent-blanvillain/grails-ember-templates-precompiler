@@ -1,8 +1,7 @@
-var exports = {};
 (function() {
 var Ember = { assert: function() {} };
-// Version: v1.0.0-rc.2-81-g4e75d2b
-// Last commit: 4e75d2b (2013-04-09 16:28:08 -0700)
+// Version: v1.0.0-rc.3-169-g0102b4a
+// Last commit: 0102b4a (2013-05-02 05:41:52 -0700)
 
 
 (function() {
@@ -23,7 +22,8 @@ if(!Handlebars && typeof require === 'function') {
   Handlebars = require('handlebars');
 }
 
-Ember.assert("Ember Handlebars requires Handlebars 1.0.0-rc.3 or greater. Include a SCRIPT tag in the HTML HEAD linking to the Handlebars file before you link to Ember.", Handlebars && Handlebars.COMPILER_REVISION === 2);
+Ember.assert("Ember Handlebars requires Handlebars version 1.0.0-rc.3. Include a SCRIPT tag in the HTML HEAD linking to the Handlebars file before you link to Ember.", Handlebars)
+Ember.assert("Ember Handlebars requires Handlebars version 1.0.0-rc.3, COMPILER_REVISION 2. Builds of master may have other COMPILER_REVISION values.", Handlebars.COMPILER_REVISION === 2);
 
 /**
   Prepares the Handlebars templating library for use inside Ember's view
@@ -41,10 +41,25 @@ Ember.assert("Ember Handlebars requires Handlebars 1.0.0-rc.3 or greater. Includ
 */
 Ember.Handlebars = objectCreate(Handlebars);
 
+function makeBindings(options) {
+  var hash = options.hash,
+      hashType = options.hashTypes;
+
+  for (var prop in hash) {
+    if (hashType[prop] === 'ID') {
+      hash[prop + 'Binding'] = hash[prop];
+      hashType[prop + 'Binding'] = 'STRING';
+      delete hash[prop];
+      delete hashType[prop];
+    }
+  }
+}
+
 Ember.Handlebars.helper = function(name, value) {
   if (Ember.View.detect(value)) {
-    Ember.Handlebars.registerHelper(name, function(name, options) {
+    Ember.Handlebars.registerHelper(name, function(options) {
       Ember.assert("You can only pass attributes as parameters to a application-defined helper", arguments.length < 3);
+      makeBindings(options);
       return Ember.Handlebars.helpers.view.call(this, value, options);
     });
   } else {
