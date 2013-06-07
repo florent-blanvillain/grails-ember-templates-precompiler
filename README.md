@@ -117,6 +117,10 @@ All configuration variables should be relative to:
 
 ## Changelog
 
+### v0.4.2
+
+* compatible with `ember-1.0.0-rc.5.js`
+
 ### v0.4.1
 
 * compatible with `ember-1.0.0-rc.1` & `ember-1.0.0-rc.2` & current head

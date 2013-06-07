@@ -12,7 +12,7 @@ class Precompiler {
 
     Precompiler() {
         ClassLoader classLoader = getClass().classLoader
-        URL handlebars = classLoader.getResource('handlebars-1.0.rc.3.js')
+        URL handlebars = classLoader.getResource('handlebars-1.0.0-rc.4.js')
         URL emberTemplateCompiler = classLoader.getResource('ember-template-compiler.js')
         Context cx = Context.enter()
         cx.optimizationLevel = 9

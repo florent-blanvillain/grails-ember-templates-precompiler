@@ -25,7 +25,7 @@ class PrecompilerTests {
     void precompileTemplate() {
         String expected = """
 function anonymous(Handlebars, depth0, helpers, partials, data) {
-    this.compilerInfo = [2, ">= 1.0.0-rc.3"];
+    this.compilerInfo = [3, ">= 1.0.0-rc.4"];
     helpers = helpers || Ember.Handlebars.helpers;
     data = data || {};
     data.buffer.push("<div>Simple</div>");
