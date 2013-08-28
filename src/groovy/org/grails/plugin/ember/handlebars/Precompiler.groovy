@@ -12,7 +12,7 @@ class Precompiler {
 
     Precompiler() {
         ClassLoader classLoader = getClass().classLoader
-        URL handlebars = classLoader.getResource('handlebars-1.0.0-rc.4.js')
+        URL handlebars = classLoader.getResource('handlebars-1.0.0.js')
         URL emberTemplateCompiler = classLoader.getResource('ember-template-compiler.js')
         Context cx = Context.enter()
         cx.optimizationLevel = 9
@@ -20,15 +20,30 @@ class Precompiler {
         global.init cx
         scope = cx.initStandardObjects(global)
         cx.evaluateString scope, handlebars.text, handlebars.file, 1, null
+
+        // wrap ember precompiler
         cx.evaluateString scope, """
 var exports = {}; // for emberTemplateCompiler
+(function() {
+var Ember = { assert: function() {} };
+
+(function() {
+${emberTemplateCompiler.text}
+})();
+
+exports.precompile = Ember.Handlebars.precompile;
+exports.EmberHandlebars = Ember.Handlebars;
+})();
 """, "", 1, null
-        cx.evaluateString scope, emberTemplateCompiler.text, emberTemplateCompiler.file, 1, null
+
+
         cx.evaluateString scope, """
 function precompileEmberHandlebars(string) {
   return exports.precompile(string).toString();
 }
 """, "", 1, null
+
+
         precompile = scope.get("precompileEmberHandlebars", scope)
         Context.exit();
     }

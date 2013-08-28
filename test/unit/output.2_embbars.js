@@ -2,8 +2,8 @@
 (function(){
     Ember.TEMPLATES['input'] = Ember.Handlebars.template(
 function anonymous(Handlebars, depth0, helpers, partials, data) {
-    this.compilerInfo = [3, ">= 1.0.0-rc.4"];
-    helpers = helpers || Ember.Handlebars.helpers;
+    this.compilerInfo = [4, ">= 1.0.0"];
+    helpers = this.merge(helpers, Ember.Handlebars.helpers);
     data = data || {};
     var buffer = "", stack1, options, hashTypes, hashContexts, escapeExpression = this.escapeExpression, self = this, functionType = "function", blockHelperMissing = helpers.blockHelperMissing;
     function program1(depth0, data) {

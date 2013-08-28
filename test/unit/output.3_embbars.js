@@ -2,8 +2,8 @@
 (function(){
     Ember.TEMPLATES['input'] = Ember.Handlebars.template(
 function anonymous(Handlebars, depth0, helpers, partials, data) {
-    this.compilerInfo = [3, ">= 1.0.0-rc.4"];
-    helpers = helpers || Ember.Handlebars.helpers;
+    this.compilerInfo = [4, ">= 1.0.0"];
+    helpers = this.merge(helpers, Ember.Handlebars.helpers);
     data = data || {};
     var buffer = "", stack1, hashTypes, hashContexts, options, escapeExpression = this.escapeExpression, self = this, helperMissing = helpers.helperMissing;
     function program1(depth0, data) {
@@ -108,7 +108,7 @@ function anonymous(Handlebars, depth0, helpers, partials, data) {
         hashTypes = {};
         hashContexts = {};
         options = {hash:{}, contexts:[depth0], types:["ID"], hashContexts:hashContexts, hashTypes:hashTypes, data:data};
-        data.buffer.push(escapeExpression(((stack1 = helpers.partial), stack1 ? stack1.call(depth0, "user_info", options) : helperMissing.call(depth0, "partial", "user_info", options))));
+        data.buffer.push(escapeExpression(((stack1 = helpers.partial || depth0.partial), stack1 ? stack1.call(depth0, "user_info", options) : helperMissing.call(depth0, "partial", "user_info", options))));
         data.buffer.push("\n");
         return buffer;
     }
@@ -169,17 +169,17 @@ function anonymous(Handlebars, depth0, helpers, partials, data) {
     hashContexts = {"value":depth0};
     hashTypes = {"value":"ID"};
     options = {hash:{"value":("name")}, contexts:[], types:[], hashContexts:hashContexts, hashTypes:hashTypes, data:data};
-    data.buffer.push(escapeExpression(((stack1 = helpers.input), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+    data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
     data.buffer.push("\n");
     hashContexts = {"type":depth0, "checked":depth0};
     hashTypes = {"type":"ID", "checked":"ID"};
     options = {hash:{"type":("checkbox"), "checked":("isActive")}, contexts:[], types:[], hashContexts:hashContexts, hashTypes:hashTypes, data:data};
-    data.buffer.push(escapeExpression(((stack1 = helpers.input), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
+    data.buffer.push(escapeExpression(((stack1 = helpers.input || depth0.input), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "input", options))));
     data.buffer.push("\n");
     hashContexts = {"value":depth0};
     hashTypes = {"value":"ID"};
     options = {hash:{"value":("name")}, contexts:[], types:[], hashContexts:hashContexts, hashTypes:hashTypes, data:data};
-    data.buffer.push(escapeExpression(((stack1 = helpers.textarea), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "textarea", options))));
+    data.buffer.push(escapeExpression(((stack1 = helpers.textarea || depth0.textarea), stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "textarea", options))));
     return buffer;
 }
 );
