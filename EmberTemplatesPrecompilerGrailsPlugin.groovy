@@ -1,5 +1,5 @@
 class EmberTemplatesPrecompilerGrailsPlugin {
-    def version = "0.4.3"
+    def version = "1.0.0"
     def grailsVersion = "1.3.5 > *"
     def dependsOn = [resources:'1.0 > *']
     def loadAfter = ['resources']

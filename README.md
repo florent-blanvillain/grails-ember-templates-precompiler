@@ -117,6 +117,10 @@ All configuration variables should be relative to:
 
 ## Changelog
 
+### v1.0.0
+
+* versioning policy from now on : version numbers mirrors Ember's version numbers for the sake of clarity.
+* compatible with `ember-1.0.0.js` (and `ember-1.0.0-rc.7.js`)
 
 ### v0.4.3
 
