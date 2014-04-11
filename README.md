@@ -1,3 +1,5 @@
+**warning** : I'm not using this plugin anymore. If you need an upgrade for newer versions of Ember.js and/or Handlebars, please raise an issue with the targeted versions. I promise I'll release a new version very quickly.
+
 # Ember.js templates precompiler plug-in for Grails
 
 This plug-in precompiles EmberJS powered Handlebars templates on the server side.
